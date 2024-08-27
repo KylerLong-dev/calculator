@@ -1,12 +1,11 @@
-
-let operator
-let firstNumber
-let secondNumber 
-let displayValue = [];
-
+let currentInput = "";
+let operatorValue = "";
+let firstNumber = "";
+let secondNumber = "";
 
 const screenText = document.querySelector(".screen-text");
 const numberList = document.querySelectorAll(".numbers");
+const operatorList = document.querySelectorAll(".operators");
 
 const toAdd = function (a, b) {
     return a + b; 
@@ -54,5 +53,20 @@ numberList.forEach((number) => {
         else {
             screenText.textContent += value;
         }
+        currentInput = screenText.textContent;
     })
 })
+
+//need to store currentInput inside firstNumber when operator button is pressed
+//store operator inside operatorValue when operator pressed
+//store currentInput inside secondNumber when equal is pressed prior to calling operate function with args
+
+operatorList.forEach((operator) => {
+    operator.addEventListener("click", () => {
+        const value = operator.textContent;    
+        screenText.textContent += value;    
+    })
+})
+
+//Pressing "=" should clear the screen and display the result by calling the operation function
+//when I call operate, variables storing numbers and operator data will be called as arguments 
