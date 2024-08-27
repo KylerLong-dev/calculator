@@ -1,10 +1,12 @@
 
-let operator = "";
-let firstNumber = "";
-let secondNumber = "";
-let displayValue = "";
+let operator
+let firstNumber
+let secondNumber 
+let displayValue = [];
 
-const numbers = document.querySelector(".numbers");
+
+const screenText = document.querySelector(".screen-text");
+const numberList = document.querySelectorAll(".numbers");
 
 const toAdd = function (a, b) {
     return a + b; 
@@ -43,4 +45,14 @@ const operate = function (num1, operator, num2) {
     }
 }
 
-console.log(operate(10, "+", 10));
+numberList.forEach((number) => {
+    number.addEventListener("click", () => {
+        const value = number.textContent;
+        if (screenText.textContent === "0"){
+            screenText.textContent = value;
+        }
+        else {
+            screenText.textContent += value;
+        }
+    })
+})
