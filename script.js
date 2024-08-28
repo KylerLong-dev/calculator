@@ -6,6 +6,7 @@ let secondNumber = "";
 const screenText = document.querySelector(".screen-text");
 const numberList = document.querySelectorAll(".numbers");
 const operatorList = document.querySelectorAll(".operators");
+const equal = document.querySelector(".large-equal");
 
 const toAdd = function (a, b) {
     return a + b; 
@@ -28,16 +29,20 @@ const toDivide = function (a, b) {
 
 const operate = function (num1, operator, num2) {
     if (operator === "+") {
-        return toAdd(num1, num2);
+        const result = toAdd(num1, num2);
+        return Number(result);
     }
     else if (operator === "-") {
-        return toSubtract (num1, num2);
+        const result = toSubtract(num1, num2);
+        return Number(result);
     }
     else if (operator === "*") {
-        return toMultiply(num1, num2);
+        const result = toMultiply(num1, num2);
+        return Number(result);
     }
     else if (operator === "/") {
-        return toDivide(num1, num2);
+        const result = toDivide(num1, num2);
+        return Number(result);
     }
     else {
         return "ERROR: Invalid Operator.";
@@ -53,20 +58,28 @@ numberList.forEach((number) => {
         else {
             screenText.textContent += value;
         }
-        currentInput = screenText.textContent;
+        currentInput = Number(value);
     })
 })
-
-//need to store currentInput inside firstNumber when operator button is pressed
-//store operator inside operatorValue when operator pressed
-//store currentInput inside secondNumber when equal is pressed prior to calling operate function with args
 
 operatorList.forEach((operator) => {
     operator.addEventListener("click", () => {
         const value = operator.textContent;    
-        screenText.textContent += value;    
+        screenText.textContent += value;
+        firstNumber = currentInput;  
+        currentInput = "";
+        operatorValue = value;
     })
 })
 
-//Pressing "=" should clear the screen and display the result by calling the operation function
-//when I call operate, variables storing numbers and operator data will be called as arguments 
+const equals = function() {
+    equal.addEventListener("click", () => {
+        secondNumber = currentInput;
+        const solution = operate(firstNumber, operatorValue, secondNumber);
+        screenText.textContent = solution; 
+    })
+}
+
+equals();
+
+//need to convert strings to numbers in operate function for calculator properly work 
