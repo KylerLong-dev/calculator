@@ -28,21 +28,20 @@ const toDivide = function (a, b) {
 }
 
 const operate = function (num1, operator, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+
     if (operator === "+") {
-        const result = toAdd(num1, num2);
-        return Number(result);
+        return toAdd(num1, num2);
     }
     else if (operator === "-") {
-        const result = toSubtract(num1, num2);
-        return Number(result);
+        return toSubtract(num1, num2);
     }
-    else if (operator === "*") {
-        const result = toMultiply(num1, num2);
-        return Number(result);
+    else if (operator === "x") {
+        return toMultiply(num1, num2);
     }
     else if (operator === "/") {
-        const result = toDivide(num1, num2);
-        return Number(result);
+        return toDivide(num1, num2);
     }
     else {
         return "ERROR: Invalid Operator.";
@@ -58,7 +57,7 @@ numberList.forEach((number) => {
         else {
             screenText.textContent += value;
         }
-        currentInput = Number(value);
+        currentInput += value;
     })
 })
 
@@ -81,5 +80,3 @@ const equals = function() {
 }
 
 equals();
-
-//need to convert strings to numbers in operate function for calculator properly work 
