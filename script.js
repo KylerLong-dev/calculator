@@ -1,10 +1,10 @@
-
-const maxDigits = 12;
+let operatorClicked = false;
 let currentInput = "";
 let operatorValue = "";
 let firstNumber = "";
 let secondNumber = "";
 
+const maxDigits = 12;
 const screenText = document.querySelector(".screen-text");
 const numberList = document.querySelectorAll(".numbers");
 const operatorList = document.querySelectorAll(".operators");
@@ -67,12 +67,17 @@ numberList.forEach((number) => {
 
 operatorList.forEach((operator) => {
     operator.addEventListener("click", () => {
-        const value = operator.textContent;    
-        screenText.textContent += value;
-        firstNumber = currentInput;  
-        currentInput = "";
-        operatorValue = value;
-    })
+        if (operatorClicked === false) {
+            const value = operator.textContent; 
+            if (screenText.textContent.length < maxDigits) {
+                screenText.textContent += value;
+                firstNumber = currentInput;  
+                currentInput = "";
+                operatorValue = value;
+                operatorClicked = true;
+            }
+        }
+     })
 })
 
 const equals = function() {
@@ -80,6 +85,7 @@ const equals = function() {
         secondNumber = currentInput;
         const solution = operate(firstNumber, operatorValue, secondNumber);
         screenText.textContent = solution; 
+        operatorClicked = false; 
     })
 }
 
