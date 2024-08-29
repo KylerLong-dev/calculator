@@ -1,3 +1,5 @@
+
+const maxDigits = 12;
 let currentInput = "";
 let operatorValue = "";
 let firstNumber = "";
@@ -22,7 +24,7 @@ const toMultiply = function (a, b) {
 
 const toDivide = function (a, b) {
     if (b === 0) {
-        return "ERROR: Division by 0";
+        return "*Facepalm*";
     }
     return a / b; 
 }
@@ -51,13 +53,15 @@ const operate = function (num1, operator, num2) {
 numberList.forEach((number) => {
     number.addEventListener("click", () => {
         const value = number.textContent;
-        if (screenText.textContent === "0"){
-            screenText.textContent = value;
+        if (screenText.textContent.length < maxDigits) {
+            if (screenText.textContent === "0"){
+                screenText.textContent = value;
+            }
+            else {
+                screenText.textContent += value;
+            }
+            currentInput += value;
         }
-        else {
-            screenText.textContent += value;
-        }
-        currentInput += value;
     })
 })
 
