@@ -9,6 +9,7 @@ const screenText = document.querySelector(".screen-text");
 const numberList = document.querySelectorAll(".numbers");
 const operatorList = document.querySelectorAll(".operators");
 const equal = document.querySelector(".large-equal");
+const resetBtn = document.querySelector(".large-reset");
 
 const toAdd = function (a, b) {
     return a + b; 
@@ -90,3 +91,16 @@ const equals = function() {
 }
 
 equals();
+
+const reset = function() {
+    resetBtn.addEventListener("click", () => {
+        firstNumber = "";
+        secondNumber = "";
+        operatorValue = "";
+        currentInput = "";
+        operatorClicked = false; 
+        screenText.textContent = "0";
+    })
+}
+
+reset();
