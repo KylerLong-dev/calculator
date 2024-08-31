@@ -89,13 +89,26 @@ operatorList.forEach((operator) => {
 const equals = function() {
     equal.addEventListener("click", () => {
         secondNumber = currentInput;
-        const solution = operate(firstNumber, operatorValue, secondNumber);
-        screenText.textContent = solution; 
-        //Reset for new calc
+        let solution = operate(firstNumber, operatorValue, secondNumber);
+        let solutionStr = solution.toString();
+
+        if (solutionStr.length > maxDigits) {
+            if (solutionStr.includes('.')) {
+                const integerPart = solutionStr.split('.')[0];
+                const decimalPart = solutionStr.split('.')[1].slice(0, maxDigits - integerPart.length);
+                solutionStr = integerPart + '.' + decimalPart;
+            } else {
+                solutionStr = solutionStr.slice(0, maxDigits);
+            }
+            solution = parseFloat(solutionStr); 
+        }
+
+        screenText.textContent = solution;
+        // Reset for new calc
         operatorClicked = false; 
         firstNumber = solution; 
         currentInput = solution;
-    })
+    });
 }
 
 equals();
@@ -113,5 +126,5 @@ const reset = function() {
 
 reset();
 
-//add delete button function and 
+//add delete button function
 
