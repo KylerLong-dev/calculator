@@ -1,4 +1,3 @@
-//when clicking an operator at subsequent points, should display the solution and store solution as firstNumber and currentInput  
 
 let operatorClicked = false;
 let currentInput = "";
@@ -57,9 +56,8 @@ numberList.forEach((number) => {
     number.addEventListener("click", () => {
         const value = number.textContent;
         if (screenText.textContent === "0" || operatorClicked) {
-            currentInput = value;
+            currentInput += value;
             screenText.textContent = currentInput;
-            operatorClicked = false;
         } else if (currentInput.length < maxDigits) {
             currentInput += value;
             screenText.textContent = currentInput;
@@ -112,4 +110,6 @@ const reset = function() {
 }
 
 reset();
+
+//add delete button function and 
 
