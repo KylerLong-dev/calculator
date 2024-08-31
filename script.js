@@ -48,17 +48,19 @@ const operate = function (num1, operator, num2) {
         return toDivide(num1, num2);
     }
     else {
-        return "ERROR: Invalid Operator.";
+        return "ERROR";
     }
 }
 
 numberList.forEach((number) => {
     number.addEventListener("click", () => {
         const value = number.textContent;
-        if (screenText.textContent === "0" || operatorClicked) {
+        if (screenText.textContent === "0" || operatorClicked 
+            && currentInput.length < maxDigits) {
             currentInput += value;
             screenText.textContent = currentInput;
-        } else if (currentInput.length < maxDigits) {
+        } 
+        else if (currentInput.length < maxDigits) {
             currentInput += value;
             screenText.textContent = currentInput;
         }
