@@ -11,6 +11,7 @@ const numberList = document.querySelectorAll(".numbers");
 const operatorList = document.querySelectorAll(".operators");
 const equal = document.querySelector(".large-equal");
 const resetBtn = document.querySelector(".large-reset");
+const deleteBtn = document.querySelector(".delete");
 
 const toAdd = function (a, b) {
     return a + b; 
@@ -126,5 +127,20 @@ const reset = function() {
 
 reset();
 
-//add delete button function
+const deleteButton = function() {
+    deleteBtn.addEventListener("click", () => {
+        if (screenText.textContent === "0") {
+            return "0";
+        }
+        else {
+            let lastNumber = currentInput;
+            screenText.textContent = screenText.textContent.slice(0,-1);
+            currentInput = lastNumber.slice(0, -1);
+            if (currentInput === "") {
+                screenText.textContent = "0";
+            }
+        }
+    })
+}   
 
+deleteButton();
